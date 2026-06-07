@@ -161,7 +161,17 @@
       </a>
 
       <!-- ============================================================
-           TEMPLATE FOR A NEW RESOURCE  (copy this whole <a>...</a> block)
+           CURRENT ROSTER  (live)
+           Replace the href with your published Google Sheet / Drive link
+      ============================================================ -->
+      <a class="card" href="https://docs.google.com/spreadsheets/d/1TVnCm2g3UNJTCBP3KMsSEF6PzVnIYyqKIWufqJ4slx8/edit?usp=drive_link" target="_blank" rel="noopener">
+        <div class="icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 3v18"/></svg>
+        </div>
+        <h3>Current Roster</h3>
+        <p>View the finalised duty roster for the current month.</p>
+        <span class="go">Open <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m13 6 6 6-6 6"/></svg></span>
+      </a>
            1. Remove the word "soon" from class="card soon"  -> class="card"
            2. Delete the <span class="tag-soon">Soon</span> line
            3. Put your link in href="..."
@@ -181,5 +191,23 @@
 
     <footer>ETD · MEDICAL OFFICERS · INTERNAL USE</footer>
   </div>
+
+<script>
+  // Safeguard: if any card still has an unfilled "PASTE_..." link, disable it
+  // and mark it so it can't be clicked into a broken page.
+  document.querySelectorAll('a.card').forEach(function(card){
+    var href = card.getAttribute('href') || '';
+    if(href.indexOf('PASTE_') !== -1){
+      card.classList.add('soon');
+      card.setAttribute('href', '#');
+      if(!card.querySelector('.tag-soon')){
+        var tag = document.createElement('span');
+        tag.className = 'tag-soon';
+        tag.textContent = 'Set link';
+        card.appendChild(tag);
+      }
+    }
+  });
+</script>
 </body>
 </html>
